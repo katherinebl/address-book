@@ -1,18 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import ContactList, { Contact } from './components/ContactList';
 import Header from './components/Header';
 import ContactForm from './components/ContactForm';
+import Footer from './components/Footer';
 
 enum View {
 	CONTACT_LIST = 'contactList',
 	CONTACT_FORM = 'contactForm',
 }
 
+const useLocalStorage = (key: string, initialValue: any) => {
+	const [storedValue, setStoredValue] = useState(() => {
+		try {
+			const item = localStorage.getItem(key);
+			return item ? JSON.parse(item) : initialValue;
+		} catch (error) {
+			console.error('Error retrieving data from localStorage:', error);
+			return initialValue;
+		}
+	});
+
+	useEffect(() => {
+		try {
+			localStorage.setItem(key, JSON.stringify(storedValue));
+		} catch (error) {
+			console.error('Error storing data in localStorage:', error);
+		}
+	}, [key, storedValue]);
+
+	return [storedValue, setStoredValue];
+};
+
 const App: React.FC = () => {
 	const [currentView, setCurrentView] = useState<View>(View.CONTACT_LIST);
-	const [contacts, setContacts] = useState<Contact[]>([]);
-
+	const [contacts, setContacts] = useLocalStorage('contacts', []);
 	const [selectedContact, setSelectedContact] = useState<Contact | null>(null);
 
 	const handleContactForm = () => {
@@ -21,18 +43,20 @@ const App: React.FC = () => {
 	};
 
 	const handleContactAdded = (contact: Contact) => {
-		setContacts((prevContacts) => [...prevContacts, contact]);
+		setContacts((prevContacts: Contact[]) => [...prevContacts, contact]);
 		setCurrentView(View.CONTACT_LIST);
 	};
 
 	const handleContactEdited = (contact: Contact) => {
-		const updatedContacts = contacts.map((c) => (c.id === contact.id ? contact : c));
+		const updatedContacts = contacts.map((c: { id: number }) =>
+			c.id === contact.id ? contact : c
+		);
 		setContacts(updatedContacts);
 		setCurrentView(View.CONTACT_LIST);
 	};
 
 	const handleContactDeleted = (id: number) => {
-		const updatedContacts = contacts.filter((contact) => contact.id !== id);
+		const updatedContacts = contacts.filter((contact: { id: number }) => contact.id !== id);
 		setContacts(updatedContacts);
 		setCurrentView(View.CONTACT_LIST);
 	};
@@ -76,6 +100,7 @@ const App: React.FC = () => {
 					setSelectedContact={setSelectedContact}
 				/>
 			)}
+			<Footer />
 		</div>
 	);
 };
