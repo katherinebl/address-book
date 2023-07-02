@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import countryList from "country-list";
+import React, { useState, useEffect } from 'react';
+import countryList from 'country-list';
 
 interface Contact {
 	id: number;
@@ -30,10 +30,12 @@ const ContactForm: React.FC<ContactFormProps> = ({
 	selectedContact,
 	setSelectedContact,
 }) => {
-	const [firstName, setFirstName] = useState("");
-	const [lastName, setLastName] = useState("");
-	const [email, setEmail] = useState("");
-	const [country, setCountry] = useState("");
+	const [formFields, setFormFields] = useState({
+		firstName: '',
+		lastName: '',
+		email: '',
+		country: '',
+	});
 	const countries = countryList.getData();
 
 	useEffect(() => {
@@ -44,41 +46,30 @@ const ContactForm: React.FC<ContactFormProps> = ({
 		}
 	}, [selectedContact]);
 
-	const setFormFields = (contact: Contact) => {
-		setFirstName(contact.firstName);
-		setLastName(contact.lastName);
-		setEmail(contact.email);
-		setCountry(contact.country);
-	};
-
 	const addContact = () => {
 		if (isFormValid()) {
 			const newContact: Contact = {
 				id: contacts.length + 1,
-				firstName,
-				lastName,
-				email,
-				country,
+				...formFields,
 			};
 			onContactAdded(newContact);
 			resetForm();
 		} else {
-			alert("Please fill in all the fields");
+			alert('Please fill in all the fields');
 		}
 	};
 
 	const editContact = () => {
-		if (selectedContact) {
+		if (selectedContact && isFormValid()) {
 			const updatedContact: Contact = {
 				...selectedContact,
-				firstName,
-				lastName,
-				email,
-				country,
+				...formFields,
 			};
 			onContactEdited(updatedContact);
 			resetForm();
 			onGoBack();
+		} else {
+			alert('Please fill in all the fields');
 		}
 	};
 
@@ -91,43 +82,39 @@ const ContactForm: React.FC<ContactFormProps> = ({
 	};
 
 	const isFormValid = () => {
+		const { firstName, lastName, email, country } = formFields;
 		return firstName && lastName && email && country;
 	};
 
 	const resetForm = () => {
-		setFirstName("");
-		setLastName("");
-		setEmail("");
-		setCountry("");
+		setFormFields({
+			firstName: '',
+			lastName: '',
+			email: '',
+			country: '',
+		});
 	};
 
-	const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setFirstName(e.target.value);
-	};
-
-	const handleLastNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setLastName(e.target.value);
-	};
-
-	const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setEmail(e.target.value);
-	};
-
-	const handleCountryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-		setCountry(e.target.value);
+	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+		const { name, value } = e.target;
+		setFormFields((prevFormFields) => ({
+			...prevFormFields,
+			[name]: value,
+		}));
 	};
 
 	return (
 		<div>
-			<h2>{contactToEdit ? "Edit Contact" : "Add Contact"}</h2>
+			<h2>{contactToEdit ? 'Edit Contact' : 'Add Contact'}</h2>
 			<form>
 				<div>
 					<label>
 						First Name:
 						<input
 							type="text"
-							value={firstName}
-							onChange={handleFirstNameChange}
+							name="firstName"
+							value={formFields.firstName}
+							onChange={handleInputChange}
 							required
 						/>
 					</label>
@@ -138,8 +125,9 @@ const ContactForm: React.FC<ContactFormProps> = ({
 						Last Name:
 						<input
 							type="text"
-							value={lastName}
-							onChange={handleLastNameChange}
+							name="lastName"
+							value={formFields.lastName}
+							onChange={handleInputChange}
 							required
 						/>
 					</label>
@@ -150,8 +138,9 @@ const ContactForm: React.FC<ContactFormProps> = ({
 						Email:
 						<input
 							type="email"
-							value={email}
-							onChange={handleEmailChange}
+							name="email"
+							value={formFields.email}
+							onChange={handleInputChange}
 							required
 						/>
 					</label>
@@ -160,7 +149,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
 				<div>
 					<label>
 						Country:
-						<select value={country} onChange={handleCountryChange} required>
+						<select name="country" value={formFields.country} onChange={handleInputChange} required>
 							<option value="">Select</option>
 							{countries.map((country) => (
 								<option key={country.code} value={country.name}>
@@ -171,11 +160,8 @@ const ContactForm: React.FC<ContactFormProps> = ({
 					</label>
 				</div>
 
-				<button
-					type="button"
-					onClick={selectedContact ? editContact : addContact}
-				>
-					{selectedContact ? "Update Contact" : "Add Contact"}
+				<button type="button" onClick={selectedContact ? editContact : addContact}>
+					{selectedContact ? 'Update Contact' : 'Add Contact'}
 				</button>
 
 				{selectedContact && (
