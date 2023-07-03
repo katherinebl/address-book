@@ -71,10 +71,6 @@ const App: React.FC = () => {
 		setCurrentView(View.CONTACT_FORM);
 	};
 
-	const handleEditContact = (contact: Contact) => {
-		setSelectedContact(contact);
-	};
-
 	return (
 		<div>
 			<Header />
@@ -83,8 +79,6 @@ const App: React.FC = () => {
 					<ContactList
 						contacts={contacts}
 						setSelectedContact={setSelectedContact}
-						onEditContact={handleEditContact}
-						onDeleteContact={handleContactDeleted}
 						onViewContact={handleViewContact}
 						handleContactForm={handleContactForm}
 					/>
@@ -98,7 +92,6 @@ const App: React.FC = () => {
 					onGoBack={handleGoBack}
 					contacts={contacts}
 					selectedContact={selectedContact}
-					setSelectedContact={setSelectedContact}
 					emailError={emailError}
 					setEmailError={setEmailError}
 				/>

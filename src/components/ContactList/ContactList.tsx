@@ -13,8 +13,6 @@ export interface Contact {
 interface ContactListProps {
 	contacts: Contact[];
 	setSelectedContact: React.Dispatch<React.SetStateAction<Contact | null>>;
-	onEditContact: (contact: Contact) => void;
-	onDeleteContact: (id: string) => void;
 	onViewContact: (contact: Contact) => void;
 	handleContactForm: () => void;
 }
@@ -35,8 +33,6 @@ const ContactListItem: React.FC<{ contact: Contact; onClick: () => void }> = ({
 const ContactList: React.FC<ContactListProps> = ({
 	contacts,
 	setSelectedContact,
-	onEditContact,
-	onDeleteContact,
 	onViewContact,
 	handleContactForm,
 }) => {

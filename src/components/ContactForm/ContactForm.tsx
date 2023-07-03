@@ -13,27 +13,22 @@ interface Contact {
 }
 
 interface ContactFormProps {
-	contactToEdit?: Contact;
 	contacts: Contact[];
 	onContactAdded: (contact: Contact) => void;
 	onContactEdited: (contact: Contact) => void;
 	onContactDeleted: (id: string) => void;
 	onGoBack: () => void;
 	selectedContact: Contact | null;
-	setSelectedContact: React.Dispatch<React.SetStateAction<Contact | null>>;
 	emailError: boolean;
 	setEmailError: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ContactForm: React.FC<ContactFormProps> = ({
-	contactToEdit,
 	onContactAdded,
 	onContactEdited,
 	onContactDeleted,
 	onGoBack,
-	contacts,
 	selectedContact,
-	setSelectedContact,
 	emailError,
 	setEmailError,
 }) => {
