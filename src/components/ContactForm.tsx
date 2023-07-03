@@ -18,6 +18,8 @@ interface ContactFormProps {
 	onGoBack: () => void;
 	selectedContact: Contact | null;
 	setSelectedContact: React.Dispatch<React.SetStateAction<Contact | null>>;
+	emailError: boolean;
+	setEmailError: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ContactForm: React.FC<ContactFormProps> = ({
@@ -29,6 +31,8 @@ const ContactForm: React.FC<ContactFormProps> = ({
 	contacts,
 	selectedContact,
 	setSelectedContact,
+	emailError,
+	setEmailError,
 }) => {
 	const [formFields, setFormFields] = useState({
 		firstName: '',
@@ -83,7 +87,16 @@ const ContactForm: React.FC<ContactFormProps> = ({
 
 	const isFormValid = () => {
 		const { firstName, lastName, email, country } = formFields;
-		return firstName && lastName && email && country;
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Email validation regex
+		const isValid = firstName && lastName && emailRegex.test(email) && country;
+
+		if (!emailRegex.test(email)) {
+			setEmailError(true);
+		} else {
+			setEmailError(false);
+		}
+
+		return isValid;
 	};
 
 	const resetForm = () => {
@@ -143,6 +156,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
 							onChange={handleInputChange}
 							required
 						/>
+						{emailError && <p className="error">Please introduce a valid email</p>}
 					</label>
 				</div>
 

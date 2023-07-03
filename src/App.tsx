@@ -36,6 +36,7 @@ const App: React.FC = () => {
 	const [currentView, setCurrentView] = useState<View>(View.CONTACT_LIST);
 	const [contacts, setContacts] = useLocalStorage('contacts', []);
 	const [selectedContact, setSelectedContact] = useState<Contact | null>(null);
+	const [emailError, setEmailError] = useState<boolean>(false);
 
 	const handleContactForm = () => {
 		setCurrentView(View.CONTACT_FORM);
@@ -98,6 +99,8 @@ const App: React.FC = () => {
 					contacts={contacts}
 					selectedContact={selectedContact}
 					setSelectedContact={setSelectedContact}
+					emailError={emailError}
+					setEmailError={setEmailError}
 				/>
 			)}
 			<Footer />
