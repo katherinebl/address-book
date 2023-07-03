@@ -10,7 +10,7 @@ export interface Contact {
 	country: string;
 }
 
-interface ContactListProps {
+export interface ContactListProps {
 	contacts: Contact[];
 	setSelectedContact: React.Dispatch<React.SetStateAction<Contact | null>>;
 	onViewContact: (contact: Contact) => void;

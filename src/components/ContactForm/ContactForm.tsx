@@ -121,7 +121,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
 
 	return (
 		<div className={styles.container}>
-			<h2>{selectedContact ? 'Edit Contact' : 'Add Contact'}</h2>
+			<h2>{selectedContact ? 'Edit Contact Mode' : 'Add Contact Mode'}</h2>
 			<form>
 				<div>
 					<label>
