@@ -114,6 +114,11 @@ const ContactForm: React.FC<ContactFormProps> = ({
 			...prevFormFields,
 			[name]: value,
 		}));
+
+		if (name === 'email') {
+			const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+			setEmailError(!emailRegex.test(value));
+		}
 	};
 
 	return (
