@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import countryList from 'country-list';
 
+import styles from './ContactForm.module.scss';
+
 interface Contact {
 	id: number;
 	firstName: string;
@@ -122,8 +124,8 @@ const ContactForm: React.FC<ContactFormProps> = ({
 	};
 
 	return (
-		<div>
-			<h2>{contactToEdit ? 'Edit Contact' : 'Add Contact'}</h2>
+		<div className={styles.container}>
+			<h2>{selectedContact ? 'Edit Contact' : 'Add Contact'}</h2>
 			<form>
 				<div>
 					<label>
@@ -161,7 +163,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
 							onChange={handleInputChange}
 							required
 						/>
-						{emailError && <p className="error">Please introduce a valid email</p>}
+						{emailError && <p className={styles.emailError}>Please introduce a valid email</p>}
 					</label>
 				</div>
 

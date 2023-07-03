@@ -86,8 +86,8 @@ const App: React.FC = () => {
 						onEditContact={handleEditContact}
 						onDeleteContact={handleContactDeleted}
 						onViewContact={handleViewContact}
+						handleContactForm={handleContactForm}
 					/>
-					<button onClick={handleContactForm}>Go to contact form</button>
 				</div>
 			)}
 			{currentView === View.CONTACT_FORM && (

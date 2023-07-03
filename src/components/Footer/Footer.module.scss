@@ -1,10 +1,9 @@
 .container {
-	position: fixed;
-	left: 0;
+	position: sticky;
 	bottom: 0;
-	width: 100%;
+	width: -webkit-fill-available;
 	background-color: #1e1d62;
-	padding: 20px;
+	padding: 10px;
 	color: #57e5ca;
 	text-align: center;
 	font-weight: 700;

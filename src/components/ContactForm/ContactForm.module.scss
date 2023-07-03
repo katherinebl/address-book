@@ -1,0 +1,72 @@
+.container {
+	background-color: aliceblue;
+	padding: 20px;
+	height: 100vh;
+
+	h2 {
+		text-align: center;
+		margin-top: 0;
+	}
+
+	form {
+		display: flex;
+		flex-direction: column;
+		max-width: 350px;
+		margin: 0 auto;
+	}
+
+	label {
+		margin-bottom: 8px;
+		font-weight: bold;
+	}
+
+	input,
+	select {
+		padding: 8px;
+		border-radius: 4px;
+		border: 1px solid #ccc;
+		margin-bottom: 16px;
+		width: -webkit-fill-available;
+	}
+
+	select {
+		appearance: none;
+	}
+
+	.error {
+		color: red;
+		margin-top: 4px;
+	}
+
+	button[type='button'] {
+		width: 100%;
+		padding: 12px 24px;
+		cursor: pointer;
+		background-color: #57e5ca;
+		border: none;
+		border-radius: 4px;
+		color: #1e1d62;
+		font-weight: 700;
+		margin-top: 16px;
+	}
+
+	button[type='button']:hover {
+		background-color: rgba(87, 229, 202, 0.75);
+		transition: ease-in-out 0.2s;
+	}
+
+	button[type='button']:last-of-type {
+		background-color: #1e1d62;
+		color: #57e5ca;
+	}
+
+	button[type='button']:last-of-type:hover {
+		background-color: rgba(30, 29, 98, 0.75);
+		transition: ease-in-out 0.2s;
+	}
+
+	.emailError {
+		font-size: 12px;
+		color: red;
+	}
+}

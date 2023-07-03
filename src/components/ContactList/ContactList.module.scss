@@ -1,0 +1,38 @@
+.container {
+	display: flex;
+	flex-direction: column;
+
+	background-color: aliceblue;
+	padding: 20px;
+	min-height: 100vh;
+	height: auto;
+
+	h2 {
+		text-align: center;
+	}
+
+	ul {
+		list-style-type: none;
+		padding: 0;
+	}
+
+	button {
+		width: 100%;
+		max-width: 350px;
+		margin: 0 auto;
+		padding: 12px 24px;
+		cursor: pointer;
+		background-color: #57e5ca;
+		border: none;
+		border-radius: 4px;
+		color: #1e1d62;
+		font-weight: 700;
+	}
+}
+
+.contactCard {
+	border-radius: 15px;
+	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+	padding: 20px;
+	margin-bottom: 15px;
+}
