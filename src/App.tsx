@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
-import ContactList, { Contact } from './components/ContactList';
-import Header from './components/Header';
-import ContactForm from './components/ContactForm';
-import Footer from './components/Footer';
+import ContactList, { Contact } from './components/ContactList/ContactList';
+import Header from './components/Header/Header';
+import ContactForm from './components/ContactForm/ContactForm';
+import Footer from './components/Footer/Footer';
 
 enum View {
 	CONTACT_LIST = 'contactList',
