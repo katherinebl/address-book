@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import countryList from 'country-list';
+import { v4 as uuidv4 } from 'uuid';
 
 import styles from './ContactForm.module.scss';
 
 interface Contact {
-	id: number;
+	id: string;
 	firstName: string;
 	lastName: string;
 	email: string;
@@ -16,7 +17,7 @@ interface ContactFormProps {
 	contacts: Contact[];
 	onContactAdded: (contact: Contact) => void;
 	onContactEdited: (contact: Contact) => void;
-	onContactDeleted: (id: number) => void;
+	onContactDeleted: (id: string) => void;
 	onGoBack: () => void;
 	selectedContact: Contact | null;
 	setSelectedContact: React.Dispatch<React.SetStateAction<Contact | null>>;
@@ -55,7 +56,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
 	const addContact = () => {
 		if (isFormValid()) {
 			const newContact: Contact = {
-				id: contacts.length + 1,
+				id: uuidv4(),
 				...formFields,
 			};
 			onContactAdded(newContact);

@@ -49,15 +49,15 @@ const App: React.FC = () => {
 	};
 
 	const handleContactEdited = (contact: Contact) => {
-		const updatedContacts = contacts.map((c: { id: number }) =>
+		const updatedContacts = contacts.map((c: { id: string }) =>
 			c.id === contact.id ? contact : c
 		);
 		setContacts(updatedContacts);
 		setCurrentView(View.CONTACT_LIST);
 	};
 
-	const handleContactDeleted = (id: number) => {
-		const updatedContacts = contacts.filter((contact: { id: number }) => contact.id !== id);
+	const handleContactDeleted = (id: string) => {
+		const updatedContacts = contacts.filter((contact: { id: string }) => contact.id !== id);
 		setContacts(updatedContacts);
 		setCurrentView(View.CONTACT_LIST);
 	};

@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './ContactList.module.scss';
 
 export interface Contact {
-	id: number;
+	id: string;
 	firstName: string;
 	lastName: string;
 	email: string;
@@ -14,7 +14,7 @@ interface ContactListProps {
 	contacts: Contact[];
 	setSelectedContact: React.Dispatch<React.SetStateAction<Contact | null>>;
 	onEditContact: (contact: Contact) => void;
-	onDeleteContact: (id: number) => void;
+	onDeleteContact: (id: string) => void;
 	onViewContact: (contact: Contact) => void;
 	handleContactForm: () => void;
 }
