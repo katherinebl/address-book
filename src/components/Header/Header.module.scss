@@ -1,6 +1,8 @@
+@import '../../styles/variables';
+
 .container {
-	background-color: #1e1d62;
+	background-color: var(--secondary-color);
 	padding: 10px;
-	color: #57e5ca;
+	color: var(--primary-color);
 	text-align: center;
 }

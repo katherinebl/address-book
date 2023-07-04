@@ -1,0 +1,19 @@
+:root {
+	--primary-color: #57e5ca;
+	--secondary-color: #1e1d62;
+	--background-color: aliceblue;
+	--text-color: #1e1d62;
+	--error-color: red;
+	--box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+	--button-padding: 12px 24px;
+	--button-border-radius: 4px;
+	--input-padding: 8px;
+	--input-border-radius: 4px;
+	--input-border: 1px solid #ccc;
+	--input-margin-bottom: 16px;
+	--container-padding: 20px;
+	--h2-text-align: center;
+	--button-width: 100%;
+	--button-max-width: 350px;
+	--button-cursor: pointer;
+}

@@ -1,14 +1,16 @@
+@import '../../styles/variables.css';
+
 .container {
 	display: flex;
 	flex-direction: column;
 
-	background-color: aliceblue;
-	padding: 20px;
+	background-color: var(--background-color);
+	padding: var(--container-padding);
 	min-height: 100vh;
 	height: auto;
 
 	h2 {
-		text-align: center;
+		text-align: var(--h2-text-align);
 	}
 
 	ul {
@@ -17,22 +19,28 @@
 	}
 
 	button {
-		width: 100%;
-		max-width: 350px;
+		width: var(--button-width);
+		max-width: var(--button-max-width);
 		margin: 0 auto;
-		padding: 12px 24px;
-		cursor: pointer;
-		background-color: #57e5ca;
+		padding: var(--button-padding);
+		cursor: var(--button-cursor);
+		background-color: var(--primary-color);
 		border: none;
-		border-radius: 4px;
-		color: #1e1d62;
+		border-radius: var(--button-border-radius);
+		color: var(--text-color);
 		font-weight: 700;
 	}
 }
 
 .contactCard {
 	border-radius: 15px;
-	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-	padding: 20px;
+	box-shadow: var(--box-shadow);
+	padding: var(--container-padding);
 	margin-bottom: 15px;
+	transition: box-shadow 0.3s ease-in-out;
+
+	&:hover {
+		box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.3);
+		cursor: pointer;
+	}
 }

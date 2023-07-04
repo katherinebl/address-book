@@ -1,17 +1,19 @@
+@import '../../styles/variables.css';
+
 .container {
-	background-color: aliceblue;
-	padding: 20px;
+	background-color: var(--background-color);
+	padding: var(--container-padding);
 	height: 100vh;
 
 	h2 {
-		text-align: center;
+		text-align: var(--h2-text-align);
 		margin-top: 0;
 	}
 
 	form {
 		display: flex;
 		flex-direction: column;
-		max-width: 350px;
+		max-width: var(--button-max-width);
 		margin: 0 auto;
 	}
 
@@ -22,10 +24,10 @@
 
 	input,
 	select {
-		padding: 8px;
-		border-radius: 4px;
-		border: 1px solid #ccc;
-		margin-bottom: 16px;
+		padding: var(--input-padding);
+		border-radius: var(--input-border-radius);
+		border: var(--input-border);
+		margin-bottom: var(--input-margin-bottom);
 		width: -webkit-fill-available;
 	}
 
@@ -34,18 +36,18 @@
 	}
 
 	.error {
-		color: red;
+		color: var(--error-color);
 		margin-top: 4px;
 	}
 
 	button[type='button'] {
-		width: 100%;
-		padding: 12px 24px;
-		cursor: pointer;
-		background-color: #57e5ca;
+		width: var(--button-width);
+		padding: var(--button-padding);
+		cursor: var(--button-cursor);
+		background-color: var(--primary-color);
 		border: none;
-		border-radius: 4px;
-		color: #1e1d62;
+		border-radius: var(--button-border-radius);
+		color: var(--text-color);
 		font-weight: 700;
 		margin-top: 16px;
 	}
@@ -56,8 +58,8 @@
 	}
 
 	button[type='button']:last-of-type {
-		background-color: #1e1d62;
-		color: #57e5ca;
+		background-color: var(--secondary-color);
+		color: var(--primary-color);
 	}
 
 	button[type='button']:last-of-type:hover {
@@ -67,6 +69,6 @@
 
 	.emailError {
 		font-size: 12px;
-		color: red;
+		color: var(--error-color);
 	}
 }
